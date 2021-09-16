@@ -7,7 +7,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import Web3Modal from "web3modal";
 import "./App.css";
-import { Account, Contract, Faucet, GasGauge, Header, Ramp, ThemeSwitch } from "./components";
+import { Account, Contract, Faucet, GasGauge, Header, Ramp, ThemeSwitch, CustomHeader } from "./components";
 import { INFURA_ID, NETWORK, NETWORKS } from "./constants";
 import { Transactor } from "./helpers";
 import {
@@ -25,7 +25,7 @@ import {
   useExchangeEthPrice,
 } from "eth-hooks/dapps/dex";
 // import Hints from "./Hints";
-import { ExampleUI, Hints, Subgraph } from "./views";
+import { ExampleUI, Hints, Subgraph ,Explore, Landing, Mint} from "./views";
 
 import { useContractConfig } from "./hooks"
 import Portis from "@portis/web3";
@@ -446,9 +446,15 @@ function App(props) {
   return (
     <div className="App">
       {/* ✏️ Edit the header and change the title to your project name */}
-      <Header />
-      {networkDisplay}
+      {/* <Header /> */}
       <BrowserRouter>
+        <CustomHeader
+            address={address}
+            logoutOfWeb3Modal={logoutOfWeb3Modal}
+            loadWeb3Modal={loadWeb3Modal}
+            userProvider={localProvider}
+          />
+{/* 
         <Menu style={{ textAlign: "center" }} selectedKeys={[route]} mode="horizontal">
           <Menu.Item key="/">
             <Link
@@ -500,18 +506,30 @@ function App(props) {
               Subgraph
             </Link>
           </Menu.Item>
-        </Menu>
+        </Menu> */}
+
 
         <Switch>
-          <Route exact path="/">
+        <Route exact path="/">
             {/*
                 🎛 this scaffolding is full of commonly used components
-                this <Contract/> component will automatically parse your ABI
-                and give you a form to interact with it locally
+                  this <Contract/> component will automatically parse your ABI
+                  and give you a form to interact with it locally
             */}
 
-            <Contract
-              name="YourContract"
+            <Landing/>
+          </Route>
+          <Route path="/mint">
+            <Mint
+            />
+          </Route>
+          <Route path="/explore">
+            <Explore
+            />
+          </Route>
+          <Route path="/contracts">
+          <Contract
+              name="LegalDoc"
               signer={userSigner}
               provider={localProvider}
               address={address}
@@ -519,15 +537,7 @@ function App(props) {
               contractConfig={contractConfig}
             />
           </Route>
-          <Route path="/hints">
-            <Hints
-              address={address}
-              yourLocalBalance={yourLocalBalance}
-              mainnetProvider={mainnetProvider}
-              price={price}
-            />
-          </Route>
-          <Route path="/exampleui">
+          {/* <Route path="/exampleui">
             <ExampleUI
               address={address}
               userSigner={userSigner}
@@ -553,7 +563,7 @@ function App(props) {
               contractConfig={contractConfig}
               chainId={1}
             />
-            {/*
+            
             <Contract
               name="UNI"
               customContract={mainnetContracts && mainnetContracts.contracts && mainnetContracts.contracts.UNI}
@@ -562,16 +572,16 @@ function App(props) {
               address={address}
               blockExplorer="https://etherscan.io/"
             />
-            */}
-          </Route>
-          <Route path="/subgraph">
+           
+          </Route> */}
+          {/* <Route path="/subgraph">
             <Subgraph
               subgraphUri={props.subgraphUri}
               tx={tx}
               writeContracts={writeContracts}
               mainnetProvider={mainnetProvider}
             />
-          </Route>
+          </Route> */}
         </Switch>
       </BrowserRouter>
 
@@ -580,7 +590,7 @@ function App(props) {
       {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
       <div style={{ position: "fixed", textAlign: "right", right: 0, top: 0, padding: 10 }}>
         <Account
-          address={address}
+          address={address} 
           localProvider={localProvider}
           userSigner={userSigner}
           mainnetProvider={mainnetProvider}
@@ -594,7 +604,7 @@ function App(props) {
       </div>
 
       {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}
-      <div style={{ position: "fixed", textAlign: "left", left: 0, bottom: 20, padding: 10 }}>
+      {/* <div style={{ position: "fixed", textAlign: "left", left: 0, bottom: 20, padding: 10 }}>
         <Row align="middle" gutter={[4, 4]}>
           <Col span={8}>
             <Ramp price={price} address={address} networks={NETWORKS} />
@@ -622,7 +632,6 @@ function App(props) {
         <Row align="middle" gutter={[4, 4]}>
           <Col span={24}>
             {
-              /*  if the local provider has a signer, let's show the faucet:  */
               faucetAvailable ? (
                 <Faucet localProvider={localProvider} price={price} ensProvider={mainnetProvider} />
               ) : (
@@ -631,7 +640,7 @@ function App(props) {
             }
           </Col>
         </Row>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -12,6 +12,33 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     log: true,
   });
 
+  await deploy("Token", {
+    // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
+    from: deployer,
+    args: ["GenCoin", "GEN", "", 
+      ["0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"], 
+      [20]
+    ],
+    log: true,
+  });
+
+  await deploy("MultiToken", {
+    // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
+    from: deployer,
+    args: ["Daohaus", "haus", "", 
+      ["0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"], 
+      [5000]
+    ],
+    log: true,
+  });
+
+    await deploy("LegalDoc", {
+      // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
+      from: deployer,
+      args: ["LegalDocs", "legt"],
+      log: true,
+    });
+
   /*
     // Getting a previously deployed contract
     const YourContract = await ethers.getContract("YourContract", deployer);
@@ -48,4 +75,4 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   });
   */
 };
-module.exports.tags = ["YourContract"];
+module.exports.tags = ["YourContract", "Token", "MultiToken", "LegalDoc"];
