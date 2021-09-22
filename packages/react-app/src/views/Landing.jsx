@@ -5,7 +5,7 @@ import '../Landing.css'
 function App() {
   return (
 
-    <div className="full-screen-center">
+    <div className="full-screen-center ">
       <div className="section jumbotron" style={{paddingTop: 80}}>
         <img src={logo} alt="logo" style={{width: 80, marginBottom: 15}}/>
         <h1 className="strong">daohaus</h1>
@@ -106,7 +106,7 @@ function App() {
             id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate>
           </form>
         </div>
-        <img src={logo} alt="logo" style={{width: 80, marginTop: 15}} />
+        <img src={logo} alt="logo" style={{width: 80, marginTop: 100, marginBottom: 70}} />
       </div>
     </div>
 );
