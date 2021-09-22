@@ -1,6 +1,6 @@
 // deploy/00_deploy_your_contract.js
 
-//const { ethers } = require("hardhat");
+// const { ethers } = require("hardhat");
 
 module.exports = async ({ getNamedAccounts, deployments }) => {
   const { deploy } = deployments;
@@ -8,16 +8,19 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   await deploy("YourContract", {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
     from: deployer,
-    //args: [ "Hello", ethers.utils.parseEther("1.5") ],
+    // args: [ "Hello", ethers.utils.parseEther("1.5") ],
     log: true,
   });
 
   await deploy("Token", {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
     from: deployer,
-    args: ["GenCoin", "GEN", "", 
-      ["0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"], 
-      [20]
+    args: [
+      "GenCoin",
+      "GEN",
+      "",
+      ["0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"],
+      [20],
     ],
     log: true,
   });
@@ -25,19 +28,22 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   await deploy("MultiToken", {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
     from: deployer,
-    args: ["Daohaus", "haus", "", 
-      ["0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"], 
-      [5000]
+    args: [
+      "Daohaus",
+      "haus",
+      "",
+      ["0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"],
+      [5000],
     ],
     log: true,
   });
 
-    await deploy("LegalDoc", {
-      // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
-      from: deployer,
-      args: ["LegalDocs", "legt"],
-      log: true,
-    });
+  await deploy("LegalDoc", {
+    // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
+    from: deployer,
+    args: ["LegalDocs", "legt"],
+    log: true,
+  });
 
   /*
     // Getting a previously deployed contract

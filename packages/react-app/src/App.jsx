@@ -18,16 +18,12 @@ import {
   useOnBlock,
   useUserProviderAndSigner,
 } from "eth-hooks";
-import {
-  useEventListener,
-} from "eth-hooks/events/useEventListener";
-import {
-  useExchangeEthPrice,
-} from "eth-hooks/dapps/dex";
+import { useEventListener } from "eth-hooks/events/useEventListener";
+import { useExchangeEthPrice } from "eth-hooks/dapps/dex";
 // import Hints from "./Hints";
-import { ExampleUI, Hints, Subgraph ,Explore, Landing, Mint} from "./views";
+import { ExampleUI, Hints, Subgraph, Explore, Landing, Mint } from "./views";
 
-import { useContractConfig } from "./hooks"
+import { useContractConfig } from "./hooks";
 import Portis from "@portis/web3";
 import Fortmatic from "fortmatic";
 import Authereum from "authereum";
@@ -69,7 +65,11 @@ if (DEBUG) console.log("📡 Connecting to Mainnet Ethereum");
 const scaffoldEthProvider = navigator.onLine
   ? new ethers.providers.StaticJsonRpcProvider("https://rpc.scaffoldeth.io:48544")
   : null;
-const poktMainnetProvider = navigator.onLine ? new ethers.providers.StaticJsonRpcProvider("https://eth-mainnet.gateway.pokt.network/v1/lb/611156b4a585a20035148406") : null;
+const poktMainnetProvider = navigator.onLine
+  ? new ethers.providers.StaticJsonRpcProvider(
+      "https://eth-mainnet.gateway.pokt.network/v1/lb/611156b4a585a20035148406",
+    )
+  : null;
 const mainnetInfura = navigator.onLine
   ? new ethers.providers.StaticJsonRpcProvider("https://mainnet.infura.io/v3/" + INFURA_ID)
   : null;
@@ -113,7 +113,6 @@ const web3Modal = new Web3Modal({
           100: "https://dai.poa.network", // xDai
         },
       },
-
     },
     portis: {
       display: {
@@ -379,8 +378,6 @@ function App(props) {
     );
   }
 
-
-
   const loadWeb3Modal = useCallback(async () => {
     const provider = await web3Modal.connect();
     setInjectedProvider(new ethers.providers.Web3Provider(provider));
@@ -449,12 +446,12 @@ function App(props) {
       {/* <Header /> */}
       <BrowserRouter>
         <CustomHeader
-            address={address}
-            logoutOfWeb3Modal={logoutOfWeb3Modal}
-            loadWeb3Modal={loadWeb3Modal}
-            userProvider={localProvider}
-          />
-{/* 
+          address={address}
+          logoutOfWeb3Modal={logoutOfWeb3Modal}
+          loadWeb3Modal={loadWeb3Modal}
+          userProvider={localProvider}
+        />
+        {/* 
         <Menu style={{ textAlign: "center" }} selectedKeys={[route]} mode="horizontal">
           <Menu.Item key="/">
             <Link
@@ -508,27 +505,24 @@ function App(props) {
           </Menu.Item>
         </Menu> */}
 
-
         <Switch>
-        <Route exact path="/">
+          <Route exact path="/">
             {/*
                 🎛 this scaffolding is full of commonly used components
                   this <Contract/> component will automatically parse your ABI
                   and give you a form to interact with it locally
             */}
 
-            <Landing/>
+            <Landing />
           </Route>
           <Route path="/mint">
-            <Mint
-            />
+            <Mint />
           </Route>
           <Route path="/explore">
-            <Explore
-            />
+            <Explore />
           </Route>
           <Route path="/contracts">
-          <Contract
+            <Contract
               name="LegalDoc"
               signer={userSigner}
               provider={localProvider}
@@ -588,9 +582,9 @@ function App(props) {
       {/* <ThemeSwitch /> */}
 
       {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
-      <div style={{ position: "fixed", textAlign: "right", right: 0, top: 0, padding: 10 }}>
+      {/* <div style={{ position: "fixed", textAlign: "right", right: 0, top: 0, padding: 10 }}>
         <Account
-          address={address} 
+          address={address}
           localProvider={localProvider}
           userSigner={userSigner}
           mainnetProvider={mainnetProvider}
@@ -601,7 +595,7 @@ function App(props) {
           blockExplorer={blockExplorer}
         />
         {faucetHint}
-      </div>
+      </div> */}
 
       {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}
       {/* <div style={{ position: "fixed", textAlign: "left", left: 0, bottom: 20, padding: 10 }}>
