@@ -3,8 +3,7 @@ import logo from '../static/logo.png'
 import '../Landing.css'
 
 function App() {
-  return (
-
+  return (  
     <div className="full-screen-center ">
       <div className="section jumbotron" style={{paddingTop: 80}}>
         <img src={logo} alt="logo" style={{width: 80, marginBottom: 15}}/>
@@ -75,8 +74,8 @@ function App() {
 
         <p>Three large similarities exist between managing a real estate property, and governing a nation.
           Namely the <strong className="underline">the creation of rules</strong> called laws,&nbsp;
-          <strong className="underline">the enforcement of those rules</strong>, and the&nbsp;
-          <strong className="underline">the management of an escrow account</strong> that we all fund through our taxes.</p>
+        <strong className="underline">the enforcement of those rules</strong>, and the&nbsp;
+        <strong className="underline">the management of an escrow account</strong> that we all fund through our taxes.</p>
 
         <p>Creating the framework for doing those three things on a much smaller and simpler scale holds an important
           advantage which is flexibility. We start small, so that we can learn from flaws in the design, build it incrementally,
@@ -87,14 +86,14 @@ function App() {
           current charismatic representative based system that pulls from two major political parties. </p>
 
         <p> With the maturity of technologies such as the internet and blockchain, this system has&nbsp;
-        <strong className="underline">become outdated and unnecessary</strong></p>
+          <strong className="underline">become outdated and unnecessary</strong></p>
 
         <p>Greed, corruption and incompetence cannot be solved by purely technical solutions, but our hope is that Daohaus will grow
           into a tool used to combat such evils. If you'd like to read more of my thoughts on the subject, please see the afterword
           where I briefly address the implications of this project on our country's&nbsp;
-          <a target="_blank" href="https://github.com/daohaus/paper#finances">financial</a>,&nbsp;
-          <a target="_blank" href="https://github.com/daohaus/paper#policy">policy</a> and&nbsp;
-          <a target="_blank" href="https://github.com/daohaus/paper#enforcement">enforcement</a> practices.
+        <a target="_blank" href="https://github.com/daohaus/paper#finances">financial</a>,&nbsp;
+        <a target="_blank" href="https://github.com/daohaus/paper#policy">policy</a> and&nbsp;
+        <a target="_blank" href="https://github.com/daohaus/paper#enforcement">enforcement</a> practices.
         </p>
 
         <p>In the same way that the Bauhaus movement was characterized by a minimalist type of design, 
@@ -109,7 +108,7 @@ function App() {
         <img src={logo} alt="logo" style={{width: 80, marginTop: 100, marginBottom: 70}} />
       </div>
     </div>
-);
+  );
 }
 
 export default App;

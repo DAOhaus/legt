@@ -67,8 +67,8 @@ const scaffoldEthProvider = navigator.onLine
   : null;
 const poktMainnetProvider = navigator.onLine
   ? new ethers.providers.StaticJsonRpcProvider(
-      "https://eth-mainnet.gateway.pokt.network/v1/lb/611156b4a585a20035148406",
-    )
+    "https://eth-mainnet.gateway.pokt.network/v1/lb/611156b4a585a20035148406",
+  )
   : null;
 const mainnetInfura = navigator.onLine
   ? new ethers.providers.StaticJsonRpcProvider("https://mainnet.infura.io/v3/" + INFURA_ID)
@@ -167,8 +167,8 @@ function App(props) {
     poktMainnetProvider && poktMainnetProvider._isProvider
       ? poktMainnetProvider
       : scaffoldEthProvider && scaffoldEthProvider._network
-      ? scaffoldEthProvider
-      : mainnetInfura;
+        ? scaffoldEthProvider
+        : mainnetInfura;
 
   const [injectedProvider, setInjectedProvider] = useState();
   const [address, setAddress] = useState();
@@ -189,7 +189,8 @@ function App(props) {
   /* 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation */
   const gasPrice = useGasPrice(targetNetwork, "fast");
   // Use your injected provider from 🦊 Metamask or if you don't have it then instantly generate a 🔥 burner wallet.
-  const userProviderAndSigner = useUserProviderAndSigner(injectedProvider, localProvider);
+  const userProviderAndSigner = useUserProviderAndSigner(injectedProvider);
+  console.log('!!', injectedProvider)
   const userSigner = userProviderAndSigner.signer;
 
   useEffect(() => {
@@ -449,7 +450,7 @@ function App(props) {
           address={address}
           logoutOfWeb3Modal={logoutOfWeb3Modal}
           loadWeb3Modal={loadWeb3Modal}
-          userProvider={localProvider}
+          userProvider={userSigner?.provider}
         />
         {/* 
         <Menu style={{ textAlign: "center" }} selectedKeys={[route]} mode="horizontal">
@@ -512,7 +513,6 @@ function App(props) {
                   this <Contract/> component will automatically parse your ABI
                   and give you a form to interact with it locally
             */}
-
             <Landing />
           </Route>
           <Route path="/mint">

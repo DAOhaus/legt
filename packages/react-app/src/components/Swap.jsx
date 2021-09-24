@@ -45,7 +45,6 @@ const makeCall = async (callName, contract, args, metadata = {}) => {
     return result;
   }
   return undefined;
-  console.log("no call of that name!");
 };
 
 const defaultToken = "ETH";
@@ -236,8 +235,8 @@ function Swap({ selectedProvider, tokenListURI }) {
   const route = trades
     ? trades.length > 0
       ? trades[0].route.path.map(function (item) {
-          return item.symbol;
-        })
+        return item.symbol;
+      })
       : []
     : [];
 
@@ -367,8 +366,8 @@ function Swap({ selectedProvider, tokenListURI }) {
   const insufficientAllowance = !inputIsToken
     ? false
     : routerAllowance
-    ? parseFloat(ethers.utils.formatUnits(routerAllowance, tokens[tokenIn].decimals)) < amountIn
-    : null;
+      ? parseFloat(ethers.utils.formatUnits(routerAllowance, tokens[tokenIn].decimals)) < amountIn
+      : null;
   const formattedBalanceIn = balanceIn
     ? parseFloat(ethers.utils.formatUnits(balanceIn, tokens[tokenIn].decimals)).toPrecision(6)
     : null;
@@ -379,14 +378,14 @@ function Swap({ selectedProvider, tokenListURI }) {
   const metaIn =
     tokens && tokenList && tokenIn
       ? tokenList.filter(function (t) {
-          return t.address === tokens[tokenIn].address;
-        })[0]
+        return t.address === tokens[tokenIn].address;
+      })[0]
       : null;
   const metaOut =
     tokens && tokenList && tokenOut
       ? tokenList.filter(function (t) {
-          return t.address === tokens[tokenOut].address;
-        })[0]
+        return t.address === tokens[tokenOut].address;
+      })[0]
       : null;
 
   const cleanIpfsURI = uri => {
@@ -448,11 +447,11 @@ function Swap({ selectedProvider, tokenListURI }) {
         {trades && ((amountOutMin && exact === "in") || (amountInMax && exact === "out"))
           ? exact === "in"
             ? `Output is estimated. You will receive at least ${amountOutMin.toSignificant(
-                6,
-              )} ${tokenOut} or the transaction will revert.`
+              6,
+            )} ${tokenOut} or the transaction will revert.`
             : `Input is estimated. You will sell at most ${amountInMax.toSignificant(
-                6,
-              )} ${tokenIn} or the transaction will revert.`
+              6,
+            )} ${tokenIn} or the transaction will revert.`
           : null}
       </Row>
     </Modal>
