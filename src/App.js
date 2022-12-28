@@ -6,8 +6,7 @@ function App() {
     <div className="full-screen-center text-align-center">
           ⚖️
         <div className="m20">
-          <strong>l</strong>egally{' '}
-          <strong>e</strong>mpowered{' '}
+          <strong>l</strong>egal{' '}
           <strong>g</strong>overnance{' '}
           <strong>t</strong>okens{' '}
           <p className='text-medium text-gray'>
