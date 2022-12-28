@@ -7,3 +7,6 @@
   font-size: calc(10px + 2vmin);
 }
 a { text-decoration: none;}
+.m10{ margin: 10px;}
+.m20{ margin: 20px;}
+.m30{ margin: 30px;}
