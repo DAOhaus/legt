@@ -1,23 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+import './shorthand.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="full-screen-center">
+        <div className="mb20 text-align-center">
+          <strong>l</strong>egally{' '}
+          <strong>e</strong>mpowered{' '}
+          <strong>g</strong>overnance{' '}
+          <strong>t</strong>okens{' '}
+          <p className='text-medium text-gray'>
+            bridging tokens & legal entities to empower assets to be used in DeFi protocols
+          </p>
+        </div>
+        <div>
+        👋 → <a className="pointer" href="mailto:john@daohaus.org">✉️</a>
+        </div>
     </div>
   );
 }
