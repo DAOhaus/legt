@@ -16,7 +16,7 @@ function App() {
           </p>
         </div>
         <div>
-        👋 → <a className="pointer" href="mailto:john@daohaus.org">✉️</a>
+        👋 → <a className="pointer" href="mailto:johndanielstorey@gmail.com">✉️</a>
         </div>
     </div>
   );
