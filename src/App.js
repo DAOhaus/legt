@@ -18,7 +18,7 @@ function App() {
             <div>handles real world cataclystic events</div>
             <div>applies jurisdictional compliance</div>
             <div>resolve on-chain disputes</div>
-            <div>elastic lines of credit</div>
+            <div>new financial products</div>
             <div className="m30"></div>
             <div>
             <a target="blank" href="https://legt.gitbook.io"><button>View Documentation</button></a>
