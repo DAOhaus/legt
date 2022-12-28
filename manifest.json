@@ -1,6 +1,13 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "L£GT",
+  "description": "Legally Empowered Governance Tokens",
+  "iconPath": "logo512.png",
+  "short_name": "L£GT",
+  "CORS": {
+    "Access-Control-Allow-Origin": "\*",
+    "Access-Control-Allow-Methods": "GET",
+    "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+  },
   "icons": [
     {
       "src": "favicon.ico",
@@ -17,9 +24,5 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }
