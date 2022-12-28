@@ -2,6 +2,7 @@
 .flex { display: flex;}
 .relative { position: relative;}
 .absolute { position: absolute;}
+.logo-font { font-family: 'Abril Fatface', cursive; font-size: 48px; }
 
 .column { flex-direction: column;}
 .row { flex-direction: row;}

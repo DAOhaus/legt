@@ -4,24 +4,28 @@ import './shorthand.css';
 function App() {
   return (
     <div className="full-screen-center text-align-center">
-          ⚖️
         <div className="m20">
-          <strong>l</strong>egal{' '}
-          <strong>g</strong>overnance{' '}
-          <strong>t</strong>okens{' '}
+          {/* <strong className="logo-font">l ¢ g t</strong> */}
+          L £ G T
           <p className='text-medium text-gray'>
-            linking tokens with legal documents & trusted 3rd party entities
+            defi protocol
+            collateralizing real world assets
+            <br></br>
+            utilizing legal governance tokens
+            <br></br>
             <div className="m30"></div>
             <div>empowers assets to be used in DeFi</div>
             <div>handles real world cataclystic events</div>
             <div>applies jurisdictional compliance</div>
-            <div>resolves hard fork disputes</div>
+            <div>resolve on-chain disputes</div>
             <div>elastic lines of credit</div>
+            <div className="m30"></div>
+            <div>
+            <a target="blank" href="https://legt.gitbook.io"><button>View Documentation</button></a>
+            <div className="m10"></div>
+            <button data-tf-popup="FUQh12hl" data-tf-size="70" data-tf-iframe-props="title=Mint Questionaire" data-tf-medium="snippet" >Start Mint</button>
+            </div>
           </p>
-
-        </div>
-        <div class="flex">
-        <a className="pointer" href="mailto:john@legt.co">✉️</a>
         </div>
     </div>
   );
