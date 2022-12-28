@@ -1,6 +1,6 @@
 {
   "name": "legt",
-  "homepage": "https://legt.io",
+  "homepage": "https://legt.co",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -14,8 +14,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "react-scripts build && gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

@@ -17,11 +17,12 @@ function App() {
             <div>handles real world cataclystic events</div>
             <div>applies jurisdictional compliance</div>
             <div>resolves hard fork disputes</div>
+            <div>elastic lines of credit</div>
           </p>
 
         </div>
         <div class="flex">
-        <a className="pointer" href="mailto:johndanielstorey@gmail.com">✉️</a>
+        <a className="pointer" href="mailto:john@legt.co">✉️</a>
         </div>
     </div>
   );
