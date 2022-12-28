@@ -5,16 +5,15 @@ function App() {
   return (
     <div className="full-screen-center text-align-center">
         <div className="m20">
-          {/* <strong className="logo-font">l ¢ g t</strong> */}
           L £ G T
+          <br></br>
           <p className='text-medium text-gray'>
+            legal governance tokens
+            <br></br>
             defi protocol
             collateralizing real world assets
             <br></br>
-            utilizing legal governance tokens
             <br></br>
-            <div className="m30"></div>
-            <div>empowers assets to be used in DeFi</div>
             <div>handles real world cataclystic events</div>
             <div>applies jurisdictional compliance</div>
             <div>resolve on-chain disputes</div>
