@@ -4,8 +4,9 @@ import './shorthand.css';
 
 function App() {
   return (
-    <div className="full-screen-center">
-        <div className="mb20 text-align-center">
+    <div className="full-screen-center text-align-center">
+          ⚖️
+        <div className="mb20">
           <strong>l</strong>egally{' '}
           <strong>e</strong>mpowered{' '}
           <strong>g</strong>overnance{' '}
