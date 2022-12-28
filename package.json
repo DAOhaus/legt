@@ -16,7 +16,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "deploy": "react-scripts build && gh-pages -d build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -41,6 +41,9 @@
     ]
   },
   "devDependencies": {
+    "@uniswap/sdk-core": "^3.1.0",
+    "@uniswap/v3-sdk": "^3.9.0",
+    "ethers": "^5.7.2",
     "gh-pages": "^3.2.3"
   }
 }

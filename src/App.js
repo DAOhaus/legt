@@ -1,5 +1,6 @@
 import './App.css';
 import './shorthand.css';
+import main from './createPool'
 import * as pd_api from "pandadoc-node-client";
 // const API_KEY = process.env.REACT_APP_DOC_API_KEY
 const API_KEY = "55d6a0534100d0c9f34bd0e33893f0c3cc133f7b"
@@ -19,6 +20,10 @@ function App() {
     templates.listTemplates({ deleted: false }).then((data) => {
       console.log('API called successfully. Returned data: %o', data);
     }).catch((error) => console.error(error));
+  }
+  const createPool = () => {
+    console.log("Pool being created!")
+    main()
   }
   const sendDoc = async() => {
     const docs = new pd_api.DocumentsApi(configuration);
@@ -112,9 +117,10 @@ function App() {
             <div className="m10"></div>
             <button data-tf-popup="FUQh12hl" data-tf-size="70" data-tf-iframe-props="title=Mint Questionaire" data-tf-medium="snippet" >Start Mint</button>
             <div className="m10"></div>
-            <button onClick={sendDoc} >Send Doc</button>
+            {/* {/* <button onClick={sendDoc} >Send Doc</button> */}
             <div className="m10"></div>
-            <button onClick={listTemplates} >List Templates</button>
+            <button onClick={createPool} >Create Pool</button>
+            
           </div>
         </p>
       </div>
