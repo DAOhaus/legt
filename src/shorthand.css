@@ -36,14 +36,17 @@
 .mr5 { margin-right: 5px;}
 .mr10 { margin-right: 10px;}
 .mr20 { margin-right: 20px;}
+.mr40 { margin-right: 40px;}
 
 .ml5 { margin-left: 5px;}
 .ml10 { margin-left: 10px;}
 .ml20 { margin-left: 20px;}
+.ml40 { margin-left: 40px;}
 
 .mt5 { margin-top: 5px;}
 .mt10 { margin-top: 10px;}
 .mt20 { margin-top: 20px;}
+.mt40 { margin-top: 40px;}
 
 .p10 { padding: 10px;}
 .p20 { padding: 20px;}
@@ -54,3 +57,4 @@
 .text-gray { color: gray; }
 .pointer { cursor: pointer; }
 .underline { text-decoration: underline;}
+.word-break { word-break: break-word;}
