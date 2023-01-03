@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@thanpolas/uniswap-chain-queries": "^0.1.1",
+    "antd": "^5.1.2",
     "pandadoc": "^1.0.1",
     "pandadoc-node-client": "^5.2.0",
     "react": "^17.0.1",
@@ -16,6 +17,7 @@
     "react-scripts": "4.0.3",
     "request-promise": "^4.2.6",
     "styled-components": "^5.3.3",
+    "v3-core": "^1.0.1",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

@@ -2,7 +2,8 @@
     "uniswapFactory": "0x1F98431c8aD98523631AE4a59f267346ea31F984",
     "goerli":{
         "asset":"0x79860c21220938a249a26ddc4616adf18efce5cf",
-        "stable":"0x02d51816e23999389ff919b48e10eb2a0756d8d5"
+        "stable":"0x02d51816e23999389ff919b48e10eb2a0756d8d5",
+        "legalNFT": ["0x5b9ae6234cf1e447680c245200e066091e631bf3", "186"]
     },
     "mainnet":{
     }
