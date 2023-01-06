@@ -14,6 +14,7 @@ ReactDOM.render(
         <Route path="/networks" element={<Networks />} />
         <Route path="/liquidity/:addressParam" element={<Liquidity />} />
         <Route path="/" element={<App />} />
+        <Route path="*" element={<App />} />
       </Routes>
     </BrowserRouter>,
   </React.StrictMode>,

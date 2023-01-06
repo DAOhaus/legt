@@ -21,7 +21,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "deploy": "cp build/index.html build/200.html && gh-pages -d build",
+    "deploy": "cp build/index.html build/404.html && gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
