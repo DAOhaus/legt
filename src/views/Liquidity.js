@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { ethers } from "ethers";
 import addresses from '../helpers/addresses.json'
-// import erc20abi from '../helpers/erc20abi.js'
 import { useParams } from "react-router-dom";
 import { Card } from 'antd';
 import { getPriceUniswapV3, queryFactoryForLPUniV3 } from '@thanpolas/uniswap-chain-queries'
@@ -28,12 +27,9 @@ function Liquidity() {
     const stable = addresses[network].stable
     const StableContract = new ethers.Contract( stable, erc20abi, provider )
     const AssetContract = new ethers.Contract( addressParam, erc20abi, provider )
-    const StableSymbol = StableContract.symbol()
-    const AssetSymbol = AssetContract.symbol()
     const getTokenInfo= useCallback(async () => {
         const stableSymbol = await StableContract.symbol()
         const assetSymbol = await AssetContract.symbol()
-        console.log('symbols', StableSymbol, AssetSymbol)
         return [stableSymbol, assetSymbol]
     })
     const getData = useCallback(async () => {
@@ -76,7 +72,7 @@ function Liquidity() {
                                     <button>{`${tokenInfo[0]} / ${tokenInfo[1]} ⇗`}</button>
                                 </a>
                                 {Object.entries(asset).map(([key, value]) =>
-                                    <p>{`${key}: ${value}`}</p>
+                                    <p key={key}>{`${key}: ${value}`}</p>
                                 )}
                             </Card>
                         </div>

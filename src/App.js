@@ -1,14 +1,8 @@
 import './App.css';
 import './shorthand.css';
-// import main from './createPool'
+import { Link } from "react-router-dom";
 
 function App() {
-  
-  const createPool = () => {
-    window.dataLayer.push({'event':'Pool Creation'})
-    console.log("Pool being created!")
-    // main()
-  }
   return (
     <div className="full-screen-center text-align-center">
       <div className="m20">
@@ -33,7 +27,9 @@ function App() {
             <button data-tf-popup="FUQh12hl" data-tf-size="70" data-tf-iframe-props="title=Mint Questionaire" data-tf-medium="snippet" >Start Mint</button>
             <div className="m10"></div>
             <div className="m10"></div>
-            <button onClick={createPool} >Create Pool</button>
+            <Link to='https://testnets.opensea.io/LGTNFT'><button>NFT Examples</button></Link>
+            <div className="m10"></div>
+            <Link to='/liquidity/0x79860c21220938a249a26ddc4616adf18efce5cf'><button>Liquidity Example</button></Link>
             <div className="m10"></div>
             <a target="blank" href="https://legt.gitbook.io"><button>View Documentation</button></a>
           </div>
