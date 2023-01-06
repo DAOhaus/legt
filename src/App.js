@@ -2,6 +2,8 @@ import './App.css';
 import './shorthand.css';
 import { Link } from "react-router-dom";
 
+console.log(`${process.env.REACT_APP_VERSION} ${JSON.stringify(process.env)}`)
+
 function App() {
   return (
     <div className="full-screen-center text-align-center">
@@ -23,7 +25,7 @@ function App() {
           <div>new financial products</div>
         </div>
           <div className="m30"></div>
-          <div>
+          <div className="mb60">
             <button data-tf-popup="FUQh12hl" data-tf-size="70" data-tf-iframe-props="title=Mint Questionaire" data-tf-medium="snippet" >Start Mint</button>
             <div className="m10"></div>
             <div className="m10"></div>
@@ -33,6 +35,7 @@ function App() {
             <div className="m10"></div>
             <a target="blank" href="https://legt.gitbook.io"><button>View Documentation</button></a>
           </div>
+        <div className='text-medium text-gray-light'>v{process.env.REACT_APP_VERSION}</div>
       </div>
     </div>
   );

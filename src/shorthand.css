@@ -32,6 +32,8 @@
 .mb5 { margin-bottom: 5px;}
 .mb10 { margin-bottom: 10px;}
 .mb20 { margin-bottom: 20px;}
+.mb30 { margin-bottom: 30px;}
+.mb60 { margin-bottom: 60px;}
 
 .mr5 { margin-right: 5px;}
 .mr10 { margin-right: 10px;}
@@ -55,6 +57,7 @@
 .background-white { background-color: white;}
 .text-green { color: green; }
 .text-gray { color: gray; }
+.text-gray-light { color: lightgray; }
 .pointer { cursor: pointer; }
 .underline { text-decoration: underline;}
 .word-break { word-break: break-word;}
