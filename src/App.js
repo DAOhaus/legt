@@ -1,5 +1,7 @@
+import React from 'react'
 import './App.css';
 import './shorthand.css';
+import "react-image-gallery/styles/css/image-gallery.css"
 import { Link } from "react-router-dom";
 
 console.log(`${process.env.REACT_APP_VERSION} ${JSON.stringify(process.env)}`)
@@ -33,9 +35,9 @@ function App() {
             <div className="m10"></div>
             <Link to='/liquidity/0x79860c21220938a249a26ddc4616adf18efce5cf'><button>Liquidity Example</button></Link>
             <div className="m10"></div>
-            <a target="blank" href="https://legt.gitbook.io"><button>View Documentation</button></a>
           </div>
         <div className='text-medium text-gray-light'>v{process.env.REACT_APP_VERSION}</div>
+        <a target="blank" className="underline text-medium text-gray" href="https://legt.gitbook.io">View Documentation</a>
       </div>
     </div>
   );
