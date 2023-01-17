@@ -4,8 +4,6 @@ import './shorthand.css';
 import "react-image-gallery/styles/css/image-gallery.css"
 import { Link } from "react-router-dom";
 
-console.log(`${process.env.REACT_APP_VERSION} ${JSON.stringify(process.env)}`)
-
 function App() {
   return (
     <div className="full-screen-center text-align-center">

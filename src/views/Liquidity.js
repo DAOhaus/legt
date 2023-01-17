@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { ethers } from "ethers";
+import _ from 'lodash';
 import addresses from '../helpers/addresses.json'
 import readable from '../helpers/readable'
 import { useParams } from "react-router-dom";
@@ -8,7 +9,9 @@ import axios from 'axios';
 import { getPriceUniswapV3, queryFactoryForLPUniV3 } from '@thanpolas/uniswap-chain-queries'
 import ImageGallery from 'react-image-gallery';
 import erc20abi from '../data/erc20abi';
+import { LinkOutlined } from '@ant-design/icons';
 const { Panel } = Collapse;
+const { Paragraph, Text } = Typography;
 
 function Liquidity() {
     const network = process.env.REACT_APP_NETWORK
@@ -58,13 +61,19 @@ function Liquidity() {
     }, [getData]);
 
     const fetchZillowData = () => {
-        axios.get(`${tokenData.airbnbData}`)
+        axios.get(`${tokenData.tokenAssetDataLink}`)
             .then(function (response) {
                 setZillowData(response.data[0])
             })
     }
 
     const dollarString = (number) => new Intl.NumberFormat('usd', { style: 'currency', currency: 'USD' }).format(number).replace(/\D00(?=\D*$)/, '')
+    const dataGroups = _.groupBy(
+        Object.entries(tokenData), ([key, value]) => key.toLowerCase().includes("link")
+    );
+    _.remove(dataGroups.true,
+        ([key]) => key.includes("tokenAssetDataLink") || key.includes("imageLinks")
+    )
 
     return (
         <div className="full-screen-center text-align-center">
@@ -72,17 +81,18 @@ function Liquidity() {
                 ? <Spin tip="loading" size="large" />
                 : <div className="m20">
                     <div className="m20" />
-                    <Typography.Title level={2}>Asset Details</Typography.Title>
                     <div className='text-medium text-gray mb40'>
                         {/* image section */}
                         <div className="flex-center w300 mAuto">
                             <ImageGallery
                                 showFullscreenButton={false}
                                 showPlayButton={false}
-                                originalWidth={200}
+                                showBullets
+                                showThumbnails={false}
                                 renderRightNav={(onClick, disabled) => (<div className="image-gallery-icon image-gallery-right-nav text-white bold txt-xl" onClick={onClick} disabled={disabled}>▷</div>)}
                                 renderLeftNav={(onClick, disabled) => (<div className="image-gallery-icon image-gallery-left-nav text-white bold txt-xl" onClick={onClick} disabled={disabled}>◁</div>)}
-                                items={tokenData.images.map(image => {
+                                // todo: move imageLinks into NFT data, not token data
+                                items={tokenData.imageLinks.map(image => {
                                     return { original: image, thumbnail: image }
                                 })}
                             />
@@ -92,6 +102,7 @@ function Liquidity() {
                             <div className="w500 relative">
                                 <Alert className="absolute left bottom30" message={<div>ZILLOW <strong>{dollarString(zestimate)}</strong></div>} type="info" />
                                 <Progress
+                                    status="active"
                                     trailColor="#52c41a"
                                     strokeColor="blue"
                                     percent={priceRatio * 100}
@@ -103,21 +114,65 @@ function Liquidity() {
                             </div>
                         </div>
                         {/* data section */}
-                        <Collapse defaultActiveKey={['1']}>
+                        <Collapse defaultActiveKey={['2']}>
                             <Panel header="Token Data" key="1">
-                                {/* {readable(tokenData)} */}
                                 <List
                                     bordered
                                     size="small"
-                                    dataSource={Object.entries(tokenData).map(([key, value]) =>
-                                        key + " : " + value
+                                    dataSource={dataGroups.false}
+                                    renderItem={([key, value]) =>
+                                        <List.Item key>
+                                            {key}: <strong>{_.isArray(value)
+                                                ? value.map((item, i) => i == 0 ? item + ', ' : item)
+                                                : value
+                                            }</strong>
+                                        </List.Item>
+                                    }
+                                />
+                                <List
+                                    dataSource={_.remove(dataGroups.true,
+                                        ([key]) => key == "tokenAssetDataLink" || "imageLinks"
                                     )}
-                                    renderItem={(item) => <List.Item>{item}</List.Item>}
+                                    renderItem={([key, value]) => (
+                                        <List.Item
+                                            key
+                                            className="flex justify-content-center"
+                                            extra={_.isArray(value) 
+                                                ? <div className="ml10">
+                                                    {
+                                                value.map((value)=>
+                                                    <a target="_blank" href={value}><LinkOutlined /></a>)
+                                                    }
+                                                </div>
+                                                : undefined
+                                            }
+                                        >
+                                            {_.isArray(value) 
+                                                ? <div>{key}</div>
+                                                : <a target="_blank" href={value}>{key}</a>
+                                            }
+                                        </List.Item>
+                                    )}
                                 />
                             </Panel>
                             <Panel header="Real Estate Data" key="2">
-                                {readable({ ...zillowData })}
-                                <button onClick={fetchZillowData}>Zillow Call</button>
+                                <List
+                                    bordered
+                                    size="small"
+                                    dataSource={Object.entries(zillowData)}
+                                    renderItem={([key, value], i) =>
+                                        <List.Item key className="justify-content-center flex">
+                                            <Paragraph className="m0" ellipsis={{ rows: 2, expandable: true, symbol: 'more', width: 200 }}>
+                                            {key}: <strong>{_.isArray(value)
+                                                ? value.map((item, i) => i == 0 ? item + ', ' : item)
+                                                : _.isObject(value)
+                                                    ? Object.entries(value).map(([key,item]) => <p>{key}:{item}</p>)
+                                                    : value
+                                            }</strong>
+                                        </Paragraph>
+                                        </List.Item>
+                                    }
+                                />
                             </Panel>
                             <Panel header="AMM Data" key="3">
                                 <div className='flex word-break justify-content-center'>{data
