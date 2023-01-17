@@ -2,9 +2,9 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { ethers } from "ethers";
 import _ from 'lodash';
 import addresses from '../helpers/addresses.json'
-import readable from '../helpers/readable'
+import dollarString from '../helpers/dollarString'
 import { useParams } from "react-router-dom";
-import { List, Card, Tooltip, Alert, Typography, Progress, Spin, Collapse } from 'antd';
+import { List, Tooltip, Alert, Typography, Progress, Spin, Collapse } from 'antd';
 import axios from 'axios';
 import { getPriceUniswapV3, queryFactoryForLPUniV3 } from '@thanpolas/uniswap-chain-queries'
 import ImageGallery from 'react-image-gallery';
@@ -15,18 +15,20 @@ const { Paragraph, Text } = Typography;
 
 function Liquidity() {
     const network = process.env.REACT_APP_NETWORK
-    const networkData = require(`../data/${network}`)
-    const { addressParam } = useParams();
-    const tokenData = require(`../data/${networkData.symbol}:${addressParam}`).default
     const [data, setData] = useState([]);
     const [tokenInfo, setTokenInfo] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [{ zestimate, price, ...zillowData }, setZillowData] = useState([]);
+    const { addressParam } = useParams();
+    // chain meta info
+    const networkData = require(`../data/${network}`)
+    const tokenData = require(`../data/${networkData.symbol}:${addressParam}`).default
     const provider = ethers.getDefaultProvider(network, { alchemy: process.env.REACT_APP_ALCHEMY_KEY_GOERLI })
     const stable = addresses[network].stable
+    // contracts
     const StableContract = new ethers.Contract(stable, erc20abi, provider)
     const AssetContract = new ethers.Contract(addressParam, erc20abi, provider)
-    // our internal variables for zillow price, dao price, liquidation etc
-    const [{ zestimate, price, ...zillowData }, setZillowData] = useState([]);
+    // internal variables - zillow price, dao price, liquidation etc
     const priceDifference = (price - zestimate) / zestimate
     const priceRatio = zestimate / price
 
@@ -53,33 +55,23 @@ function Liquidity() {
 
     useEffect(() => {
         setLoading(true)
+        axios.get(`${tokenData.tokenAssetDataLink}`).then(function (response) { setZillowData(response.data[0]) })
         async function dataFetch() { setData(await getData()) }
         async function tokenFetch() { setTokenInfo(await getTokenInfo()) }
         tokenFetch()
         dataFetch()
-        fetchZillowData()
     }, [getData]);
 
-    const fetchZillowData = () => {
-        axios.get(`${tokenData.tokenAssetDataLink}`)
-            .then(function (response) {
-                setZillowData(response.data[0])
-            })
-    }
-
-    const dollarString = (number) => new Intl.NumberFormat('usd', { style: 'currency', currency: 'USD' }).format(number).replace(/\D00(?=\D*$)/, '')
-    const dataGroups = _.groupBy(
-        Object.entries(tokenData), ([key, value]) => key.toLowerCase().includes("link")
-    );
-    _.remove(dataGroups.true,
-        ([key]) => key.includes("tokenAssetDataLink") || key.includes("imageLinks")
-    )
+    // format data for Panels
+    const dataGroups = _.groupBy( Object.entries(tokenData), ([key, value]) => key.toLowerCase().includes("link"));
+    _.remove(dataGroups.true, ([key]) => key.includes("tokenAssetDataLink") || key.includes("imageLinks"))
 
     return (
         <div className="full-screen-center text-align-center">
             {loading
                 ? <Spin tip="loading" size="large" />
                 : <div className="m20">
+                    {/* £ */}
                     <div className="m20" />
                     <div className='text-medium text-gray mb40'>
                         {/* image section */}
@@ -115,7 +107,7 @@ function Liquidity() {
                         </div>
                         {/* data section */}
                         <Collapse className="mt40">
-                            <Panel header={<Typography.Title className="m0" level={5}> Token Data </Typography.Title>} key="1">
+                            <Panel header={<Typography.Title className="absolute left right m0" level={5}> Token Data </Typography.Title>} key="1">
                                 <List
                                     bordered
                                     size="small"
@@ -137,17 +129,17 @@ function Liquidity() {
                                         <List.Item
                                             key
                                             className="flex justify-content-center"
-                                            extra={_.isArray(value) 
+                                            extra={_.isArray(value)
                                                 ? <div className="ml10">
                                                     {
-                                                value.map((value)=>
-                                                    <a target="_blank" href={value}><LinkOutlined /></a>)
+                                                        value.map((value) =>
+                                                            <a target="_blank" href={value}><LinkOutlined /></a>)
                                                     }
                                                 </div>
                                                 : undefined
                                             }
                                         >
-                                            {_.isArray(value) 
+                                            {_.isArray(value)
                                                 ? <div>{key}</div>
                                                 : <a target="_blank" href={value}>{key}</a>
                                             }
@@ -155,39 +147,54 @@ function Liquidity() {
                                     )}
                                 />
                             </Panel>
-                            <Panel header={<Typography.Title className="m0" level={5}> Real Estate Data </Typography.Title>} key="2">
+                            <Panel header={<Typography.Title className="m0 absolute left right" level={5}> Real Estate Data </Typography.Title>} key="2">
                                 <List
-                                    bordered
                                     size="small"
                                     dataSource={Object.entries(zillowData)}
                                     renderItem={([key, value], i) =>
                                         <List.Item key className="justify-content-center flex">
-                                            <Paragraph className="m0  w300" ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}>
-                                            {key}: <strong>{_.isArray(value)
-                                                ? value.map((item, i) => i == 0 ? item + ', ' : item)
-                                                : _.isObject(value)
-                                                    ? Object.entries(value).map(([key,item]) => <p>{key}:{item}</p>)
-                                                    : value
-                                            }</strong>
-                                        </Paragraph>
+                                            <Paragraph className="m0 w300" ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}>
+                                                {key}: <strong>{_.isArray(value)
+                                                    ? value.map((item, i) => i == 0 ? item + ', ' : item)
+                                                    : _.isObject(value)
+                                                        ? Object.entries(value).map(([key, item]) => <p>{key}:{item}</p>)
+                                                        : value
+                                                }</strong>
+                                            </Paragraph>
                                         </List.Item>
                                     }
                                 />
                             </Panel>
-                            <Panel header={<Typography.Title className="m0" level={5}> AMM Data </Typography.Title>}key="3">
+                            <Panel header={<Typography.Title className="m0 absolute left right" level={5}> AMM Data </Typography.Title>} key="3">
                                 <div className='flex word-break justify-content-center'>{data
                                     .filter(asset => Number(asset.token0Reserves) || Number(asset.token1Reserves))
                                     .map(asset =>
                                         <div key={asset.lpAddresses} >
-                                            <Card title={`${network} uniswap`} className="mt20" >
-                                                <a
-                                                    target="_blank"
-                                                    rel="noreferrer"
-                                                    href={`https://app.uniswap.org/#/swap?inputCurrency=${stable}&outputCurrency=${addressParam}`}>
-                                                    <button>{`${tokenInfo[0]} / ${tokenInfo[1]} ⇗`}</button>
-                                                </a>
-                                                {readable(asset)}
-                                            </Card>
+                                            <List
+                                                bordered
+                                                size="small"
+                                                dataSource={Object.entries(asset)}
+                                                renderItem={([key, value], i) =>
+                                                    <List.Item key className="justify-content-center flex">
+                                                        {key}: <strong>{_.isArray(value)
+                                                            ? value.map((item, i) => i == 0 ? item + ', ' : item)
+                                                            : _.isObject(value)
+                                                                ? Object.entries(value).map(([key, item]) => <p>{key}:{item}</p>)
+                                                                : value
+                                                        }</strong>
+                                                    </List.Item>
+                                                }
+                                            />
+                                            <List
+                                            dataSource={[1]}
+                                            renderItem={()=><List.Item className="justify-content-center flex"><a
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                href={`https://app.uniswap.org/#/swap?inputCurrency=${stable}&outputCurrency=${addressParam}`}>
+                                                {`${tokenInfo[0]} / ${tokenInfo[1]} Pool`}
+                                            </a></List.Item>}
+                                            />
+
                                         </div>
                                     )}</div>
                             </Panel>
