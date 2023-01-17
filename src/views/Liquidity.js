@@ -18,7 +18,7 @@ function Liquidity() {
     const [data, setData] = useState([]);
     const [tokenInfo, setTokenInfo] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [{ zestimate, price, ...zillowData }, setZillowData] = useState([]);
+    const [zillowData, setZillowData] = useState([]);
     const { addressParam } = useParams();
     // chain meta info
     const networkData = require(`../data/${network}`)
@@ -29,6 +29,7 @@ function Liquidity() {
     const StableContract = new ethers.Contract(stable, erc20abi, provider)
     const AssetContract = new ethers.Contract(addressParam, erc20abi, provider)
     // internal variables - zillow price, dao price, liquidation etc
+    const {zestimate, price} = zillowData
     const priceDifference = (price - zestimate) / zestimate
     const priceRatio = zestimate / price
 
@@ -109,12 +110,11 @@ function Liquidity() {
                         <Collapse className="mt40">
                             <Panel header={<Typography.Title className="absolute left right m0" level={5}> Token Data </Typography.Title>} key="1">
                                 <List
-                                    key={1}
                                     bordered
                                     size="small"
                                     dataSource={dataGroups.false}
                                     renderItem={([key, value]) =>
-                                        <List.Item key>
+                                        <List.Item>
                                             {key}: <strong>{_.isArray(value)
                                                 ? value.map((item, i) => i === 0 ? item + ', ' : item)
                                                 : value
@@ -123,13 +123,11 @@ function Liquidity() {
                                     }
                                 />
                                 <List
-                                    key={2}
                                     dataSource={_.remove(dataGroups.true,
                                         ([key]) => key === "tokenAssetDataLink" || "imageLinks"
                                     )}
                                     renderItem={([key, value]) => (
                                         <List.Item
-                                            key
                                             className="flex justify-content-center"
                                             extra={_.isArray(value)
                                                 ? <div className="ml10">
@@ -154,12 +152,12 @@ function Liquidity() {
                                     size="small"
                                     dataSource={Object.entries(zillowData)}
                                     renderItem={([key, value], i) =>
-                                        <List.Item key className="justify-content-center flex">
+                                        <List.Item className="justify-content-center flex">
                                             <Paragraph className="m0 w300" ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}>
                                                 {key}: <strong>{_.isArray(value)
                                                     ? value.map((item, i) => i === 0 ? item + ', ' : item)
                                                     : _.isObject(value)
-                                                        ? Object.entries(value).map(([key, item]) => <p>{key}:{item}</p>)
+                                                        ? Object.entries(value).map(([key, item]) => <p key={key}>{key}:{item}</p>)
                                                         : value
                                                 }</strong>
                                             </Paragraph>
@@ -182,7 +180,7 @@ function Liquidity() {
                                                         {key}: <strong>{_.isArray(value)
                                                             ? value.map((item, i) => i === 0 ? item + ', ' : item)
                                                             : _.isObject(value)
-                                                                ? Object.entries(value).map(([key, item]) => <p key>{key}:{item}</p>)
+                                                                ? Object.entries(value).map(([key, item]) => <p>{key}:{item}</p>)
                                                                 : value
                                                         }</strong>
                                                     </List.Item>
