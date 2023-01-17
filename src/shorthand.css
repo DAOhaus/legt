@@ -1,6 +1,11 @@
 /* shorthand */
 .flex { display: flex;}
 .relative { position: relative;}
+.right { right: 0}
+.left { left: 0}
+.top { top: 0}
+.top20 { top: 20px}
+.bottom30 { bottom: 30px}
 .absolute { position: absolute;}
 .logo-font { font-family: 'Abril Fatface', cursive; font-size: 48px; }
 
@@ -30,6 +35,7 @@
 .h200 { height: 200px;}
 .w300 { width: 300px;}
 .h300 { height: 300px;}
+.w500 { width: 500px;}
 
 .m0 { margin: 0 !important; }
 .mAuto { margin: auto; }
@@ -37,6 +43,7 @@
 .mb10 { margin-bottom: 10px;}
 .mb20 { margin-bottom: 20px;}
 .mb30 { margin-bottom: 30px;}
+.mb40 { margin-bottom: 40px;}
 .mb60 { margin-bottom: 60px;}
 
 .mr5 { margin-right: 5px;}
@@ -53,6 +60,7 @@
 .mt10 { margin-top: 10px;}
 .mt20 { margin-top: 20px;}
 .mt40 { margin-top: 40px;}
+.mt80 { margin-top: 80px;}
 
 .p10 { padding: 10px;}
 .p20 { padding: 20px;}

@@ -1,5 +1,6 @@
 import React from 'react'
-export default function (input){
+function toExport(input){
     return Object.entries(input).map(([key, value]) => 
         <p key={key}>{`${key}: ${value}`}</p>)
 }
+export default toExport 
