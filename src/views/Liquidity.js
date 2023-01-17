@@ -114,8 +114,8 @@ function Liquidity() {
                             </div>
                         </div>
                         {/* data section */}
-                        <Collapse defaultActiveKey={['2']}>
-                            <Panel header="Token Data" key="1">
+                        <Collapse className="mt40">
+                            <Panel header={<Typography.Title className="m0" level={5}> Token Data </Typography.Title>} key="1">
                                 <List
                                     bordered
                                     size="small"
@@ -155,14 +155,14 @@ function Liquidity() {
                                     )}
                                 />
                             </Panel>
-                            <Panel header="Real Estate Data" key="2">
+                            <Panel header={<Typography.Title className="m0" level={5}> Real Estate Data </Typography.Title>} key="2">
                                 <List
                                     bordered
                                     size="small"
                                     dataSource={Object.entries(zillowData)}
                                     renderItem={([key, value], i) =>
                                         <List.Item key className="justify-content-center flex">
-                                            <Paragraph className="m0" ellipsis={{ rows: 2, expandable: true, symbol: 'more', width: 200 }}>
+                                            <Paragraph className="m0  w300" ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}>
                                             {key}: <strong>{_.isArray(value)
                                                 ? value.map((item, i) => i == 0 ? item + ', ' : item)
                                                 : _.isObject(value)
@@ -174,7 +174,7 @@ function Liquidity() {
                                     }
                                 />
                             </Panel>
-                            <Panel header="AMM Data" key="3">
+                            <Panel header={<Typography.Title className="m0" level={5}> AMM Data </Typography.Title>}key="3">
                                 <div className='flex word-break justify-content-center'>{data
                                     .filter(asset => Number(asset.token0Reserves) || Number(asset.token1Reserves))
                                     .map(asset =>
