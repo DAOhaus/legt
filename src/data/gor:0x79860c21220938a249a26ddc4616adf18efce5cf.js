@@ -1,4 +1,4 @@
-export default {
+ const toExport = {
     "network": "goerli",
     "supportedInterface": ["erc20","tokenUri"],
     "tokenAssetType": "Real Estate",
@@ -8,3 +8,4 @@ export default {
     "metaDataNftLink": "https://testnets.opensea.io/assets/goerli/0xf4910c763ed4e47a585e2d34baa9a4b611ae448c/27227242129820536659421687614693823327255596489314134975922313044262620495972",
     "legalNftLink": "https://testnets.opensea.io/assets/goerli/0x5b9ae6234cf1e447680c245200e066091e631bf3/186",
 }
+export default toExport

@@ -1,4 +1,4 @@
-export default [
+const toExport = [
     // Read-Only Functions
     "function balanceOf(address owner) view returns (uint256)",
     "function decimals() view returns (uint8)",
@@ -10,3 +10,4 @@ export default [
     // Events
     "event Transfer(address indexed from, address indexed to, uint amount)"
 ];
+export default toExport

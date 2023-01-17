@@ -11,7 +11,7 @@ import ImageGallery from 'react-image-gallery';
 import erc20abi from '../data/erc20abi';
 import { LinkOutlined } from '@ant-design/icons';
 const { Panel } = Collapse;
-const { Paragraph, Text } = Typography;
+const { Paragraph } = Typography;
 
 function Liquidity() {
     const network = process.env.REACT_APP_NETWORK
@@ -109,21 +109,23 @@ function Liquidity() {
                         <Collapse className="mt40">
                             <Panel header={<Typography.Title className="absolute left right m0" level={5}> Token Data </Typography.Title>} key="1">
                                 <List
+                                    key={1}
                                     bordered
                                     size="small"
                                     dataSource={dataGroups.false}
                                     renderItem={([key, value]) =>
                                         <List.Item key>
                                             {key}: <strong>{_.isArray(value)
-                                                ? value.map((item, i) => i == 0 ? item + ', ' : item)
+                                                ? value.map((item, i) => i === 0 ? item + ', ' : item)
                                                 : value
                                             }</strong>
                                         </List.Item>
                                     }
                                 />
                                 <List
+                                    key={2}
                                     dataSource={_.remove(dataGroups.true,
-                                        ([key]) => key == "tokenAssetDataLink" || "imageLinks"
+                                        ([key]) => key === "tokenAssetDataLink" || "imageLinks"
                                     )}
                                     renderItem={([key, value]) => (
                                         <List.Item
@@ -132,8 +134,8 @@ function Liquidity() {
                                             extra={_.isArray(value)
                                                 ? <div className="ml10">
                                                     {
-                                                        value.map((value) =>
-                                                            <a target="_blank" href={value}><LinkOutlined /></a>)
+                                                        value.map((value,i) =>
+                                                            <a target="_blank" href={value} rel="noreferrer" key={i}><LinkOutlined /></a>)
                                                     }
                                                 </div>
                                                 : undefined
@@ -141,7 +143,7 @@ function Liquidity() {
                                         >
                                             {_.isArray(value)
                                                 ? <div>{key}</div>
-                                                : <a target="_blank" href={value}>{key}</a>
+                                                : <a target="_blank" href={value} rel="noreferrer">{key}</a>
                                             }
                                         </List.Item>
                                     )}
@@ -155,7 +157,7 @@ function Liquidity() {
                                         <List.Item key className="justify-content-center flex">
                                             <Paragraph className="m0 w300" ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}>
                                                 {key}: <strong>{_.isArray(value)
-                                                    ? value.map((item, i) => i == 0 ? item + ', ' : item)
+                                                    ? value.map((item, i) => i === 0 ? item + ', ' : item)
                                                     : _.isObject(value)
                                                         ? Object.entries(value).map(([key, item]) => <p>{key}:{item}</p>)
                                                         : value
@@ -166,20 +168,21 @@ function Liquidity() {
                                 />
                             </Panel>
                             <Panel header={<Typography.Title className="m0 absolute left right" level={5}> AMM Data </Typography.Title>} key="3">
-                                <div className='flex word-break justify-content-center'>{data
+                                <div className='flex word-break justify-content-center'>{
+                                    data
                                     .filter(asset => Number(asset.token0Reserves) || Number(asset.token1Reserves))
-                                    .map(asset =>
-                                        <div key={asset.lpAddresses} >
+                                    .map((asset,i) => 
+                                        <div key={asset.lpAddresse || i}>
                                             <List
                                                 bordered
                                                 size="small"
                                                 dataSource={Object.entries(asset)}
                                                 renderItem={([key, value], i) =>
-                                                    <List.Item key className="justify-content-center flex">
+                                                    <List.Item className="justify-content-center flex">
                                                         {key}: <strong>{_.isArray(value)
-                                                            ? value.map((item, i) => i == 0 ? item + ', ' : item)
+                                                            ? value.map((item, i) => i === 0 ? item + ', ' : item)
                                                             : _.isObject(value)
-                                                                ? Object.entries(value).map(([key, item]) => <p>{key}:{item}</p>)
+                                                                ? Object.entries(value).map(([key, item]) => <p key>{key}:{item}</p>)
                                                                 : value
                                                         }</strong>
                                                     </List.Item>
@@ -194,7 +197,6 @@ function Liquidity() {
                                                 {`${tokenInfo[0]} / ${tokenInfo[1]} Pool`}
                                             </a></List.Item>}
                                             />
-
                                         </div>
                                     )}</div>
                             </Panel>
