@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.0.0",
+    "@lighthouse-web3/sdk": "^0.1.12",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -12,7 +13,10 @@
     "antd": "^5.1.2",
     "axios": "^1.2.2",
     "cheerio": "^1.0.0-rc.12",
+    "lighthouse-web3": "^1.4.0",
     "lodash": "^4.17.21",
+    "mime": "^3.0.0",
+    "nft.storage": "^7.0.0",
     "pandadoc": "^1.0.1",
     "pandadoc-node-client": "^5.2.0",
     "react": "^17.0.1",

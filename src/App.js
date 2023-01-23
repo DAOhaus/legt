@@ -26,8 +26,9 @@ function App() {
         </div>
           <div className="m30"></div>
           <div className="mb60">
-            <button data-tf-popup="FUQh12hl" data-tf-size="70" data-tf-iframe-props="title=Mint Questionaire" data-tf-medium="snippet" >Start Mint</button>
+            <button data-tf-popup="FUQh12hl" data-tf-size="70" data-tf-iframe-props="title=Mint Questionaire" data-tf-medium="snippet" >Guided Mint</button>
             <div className="m10"></div>
+            <Link to='/mint'><button>Manual Mint</button></Link>
             <div className="m10"></div>
             <Link to='https://testnets.opensea.io/LGTNFT'><button>NFT Examples</button></Link>
             <div className="m10"></div>

@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import Networks from './views/Networks';
 import Liquidity from './views/Liquidity';
+import Mint from './views/Mint';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 
@@ -13,10 +14,11 @@ ReactDOM.render(
       <Routes>
         <Route path="/networks" element={<Networks />} />
         <Route path="/liquidity/:addressParam" element={<Liquidity />} />
+        <Route path="/mint/:addressParam?" element={<Mint />} />
         <Route path="/" element={<App />} />
         <Route path="*" element={<App />} />
       </Routes>
-    </BrowserRouter>,
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
