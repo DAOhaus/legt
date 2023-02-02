@@ -8,7 +8,6 @@ import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { mainnet, polygon, goerli } from "wagmi/chains";
 
 function WalletButton() {
-    // const provider = ethers.getDefaultProvider(network, { alchemy: process.env.REACT_APP_ALCHEMY_KEY_GOERLI })
     const chains = [mainnet, polygon, goerli];
 
     // Wagmi client
@@ -24,15 +23,15 @@ function WalletButton() {
     // Web3Modal Ethereum Client
     const ethereumClient = new EthereumClient(wagmiClient, chains);
     return (
-        <button>
         <WagmiConfig client={wagmiClient}>
-          <Web3Modal
-            projectId={process.env.REACT_APP_WALLET_CONNECT_ID}
-            ethereumClient={ethereumClient}
-          />
-          </WagmiConfig>
-        </button>
-       
+            <Web3Modal
+                projectId={process.env.REACT_APP_WALLET_CONNECT_ID}
+                ethereumClient={ethereumClient}
+                render={({ toggleModal }) => (
+                    <button onClick={toggleModal}>Connect Wallet</button>
+                )}
+            />
+        </WagmiConfig>
     );
 }
 
