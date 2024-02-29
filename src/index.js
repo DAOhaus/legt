@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Networks from './views/Networks';
-import Liquidity from './views/Liquidity';
+// import Liquidity from './views/Liquidity';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 
@@ -12,7 +12,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Routes>
         <Route path="/networks" element={<Networks />} />
-        <Route path="/liquidity/:addressParam" element={<Liquidity />} />
+        {/* <Route path="/liquidity/:addressParam" element={<Liquidity />} /> */}
         <Route path="/" element={<App />} />
         <Route path="*" element={<App />} />
       </Routes>

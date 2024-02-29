@@ -2,7 +2,7 @@ import React from 'react'
 import './App.css';
 import './shorthand.css';
 import "react-image-gallery/styles/css/image-gallery.css"
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 function App() {
   return (
@@ -29,13 +29,15 @@ function App() {
             <button data-tf-popup="FUQh12hl" data-tf-size="70" data-tf-iframe-props="title=Mint Questionaire" data-tf-medium="snippet" >Start Mint</button>
             <div className="m10"></div>
             <div className="m10"></div>
-            <Link to='https://testnets.opensea.io/LGTNFT'><button>NFT Examples</button></Link>
+            <a href='https://testnets.opensea.io/collection/lgtnft-collection' target="_blank"><button>NFT Examples</button></a>
             <div className="m10"></div>
-            <Link to='/liquidity/0x79860c21220938a249a26ddc4616adf18efce5cf'><button>Liquidity Example</button></Link>
+            <a href='https://docs.legt.co' target="_blank"><button>Documentation</button></a>
+            <div className="m10"></div>
+            {/* <Link to='/liquidity/0x79860c21220938a249a26ddc4616adf18efce5cf'><button>Liquidity Example</button></Link> */}
             <div className="m10"></div>
           </div>
         <div className='text-medium text-gray-light'>v{process.env.REACT_APP_VERSION}</div>
-        <a target="blank" className="underline text-medium text-gray" href="https://legt.gitbook.io">View Documentation</a>
+        {/* <a target="blank" className="underline text-medium text-gray" href="https://legt.gitbook.io">View Documentation</a> */}
       </div>
     </div>
   );

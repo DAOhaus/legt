@@ -107,13 +107,13 @@ function Liquidity() {
                         </div>
                         {/* data section */}
                         <Collapse className="mt40">
-                            <Panel header={<Typography.Title className="absolute left right m0" level={5}> Token Data </Typography.Title>} key="1">
+                            {/* <Panel header={<Typography.Title className="absolute left right m0" level={5}> Token Data </Typography.Title>} key="1">
                                 <List
                                     bordered
                                     size="small"
                                     dataSource={dataGroups.false}
                                     renderItem={([key, value]) =>
-                                        <List.Item key>
+                                        <List.Item key={key}>
                                             {key}: <strong>{_.isArray(value)
                                                 ? value.map((item, i) => i == 0 ? item + ', ' : item)
                                                 : value
@@ -197,7 +197,7 @@ function Liquidity() {
 
                                         </div>
                                     )}</div>
-                            </Panel>
+                            </Panel> */}
                         </Collapse>
                     </div>
                 </div>}
