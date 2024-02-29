@@ -1,7 +1,7 @@
 {
   "name": "legt",
   "homepage": "https://legt.co",
-  "version": "0.2.0",
+  "version": "1.4.0",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.0.0",
